@@ -134,7 +134,7 @@ class PushTEnv(gym.Env):
 
         observation = self._get_obs()
         info = self._get_info()
-
+        print("========= obs ========", observation)
         return observation, reward, done, info
 
     def render(self, mode):

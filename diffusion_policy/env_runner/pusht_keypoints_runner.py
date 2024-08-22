@@ -171,6 +171,9 @@ class PushTKeypointsRunner(BaseLowdimRunner):
         all_video_paths = [None] * n_inits
         all_rewards = [None] * n_inits
 
+        # print("After set up")
+        # from IPython import embed; embed()
+
         for chunk_idx in range(n_chunks):
             start = chunk_idx * n_envs
             end = min(n_inits, start + n_envs)
@@ -217,6 +220,8 @@ class PushTKeypointsRunner(BaseLowdimRunner):
                 # run policy
                 with torch.no_grad():
                     action_dict = policy.predict_action(obs_dict)
+                print("After predict action:")
+                from IPython import embed; embed()
 
                 # device_transfer
                 np_action_dict = dict_apply(action_dict,

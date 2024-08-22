@@ -45,6 +45,7 @@ def main(checkpoint, output_dir, device):
     policy.eval()
     
     # run eval
+    # from IPython import embed; embed()
     env_runner = hydra.utils.instantiate(
         cfg.task.env_runner,
         output_dir=output_dir)

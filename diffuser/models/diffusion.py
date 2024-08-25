@@ -4,6 +4,7 @@ from torch import nn
 import pdb
 
 import diffuser.utils as utils
+# from diffuser.models.temporal import TemporalUNet
 from .helpers import (
     cosine_beta_schedule,
     extract,
@@ -21,6 +22,11 @@ class GaussianDiffusion(nn.Module):
         self.observation_dim = observation_dim
         self.action_dim = action_dim
         self.transition_dim = observation_dim + action_dim
+        # self.model = TemporalUNet(horizon=horizon,
+        #                           transition_dim=self.transition_dim,
+        #                           cond_dim=observation_dim,
+        #                           dim_mults=(1, 4, 8), # Hard coded from locomotion/maze 2d setting
+        #                         )
         self.model = model
 
         betas = cosine_beta_schedule(n_timesteps)

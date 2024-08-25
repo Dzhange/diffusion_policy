@@ -3,12 +3,12 @@
 #“#SBATCH” directives that convey submission options:
 
 #SBATCH --job-name=igb_diff
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=40
 #SBATCH --mem=32gb
 #SBATCH --gres="gpu:volta:1"
 #SBATCH --time=00:60:00
-#SBATCH --output=/home/gridsan/yilundu/gzhang/logs/diff_train.out
-#SBATCH --error=/home/gridsan/yilundu/gzhang/logs/diff_train.err
+#SBATCH --output=/home/gridsan/yilundu/gzhang/diffusion_policy/data/slurm/diff_train.out
+#SBATCH --error=/home/gridsan/yilundu/gzhang/diffusion_policy/data/slurm/diff_train.err
 
 echo Hooking
 eval "$(conda shell.bash hook)"
@@ -21,5 +21,5 @@ export WANDB_MODE=offline
 
 cd /home/gridsan/yilundu/gzhang/diffusion_policy/
 python train.py --config-dir=. \
---config-name=image_pusht_diffusion_policy_cnn.yaml \
-training.seed=42 training.device=cuda:0 hydra.run.dir='data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_${task_name}'
+--config-name=train_planner_unet_lowdim_workspace.yaml \
+training.seed=42 training.device=cuda:0 hydra.run.dir='data/planner_outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_${task_name}'

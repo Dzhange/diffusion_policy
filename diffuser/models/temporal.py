@@ -42,7 +42,6 @@ class ResidualTemporalBlock(nn.Module):
         return out + self.residual_conv(x)
 
 class TemporalUnet(nn.Module):
-
     def __init__(
         self,
         horizon,

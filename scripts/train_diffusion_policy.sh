@@ -3,12 +3,12 @@
 #“#SBATCH” directives that convey submission options:
 
 #SBATCH --job-name=igb_diff
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=40
 #SBATCH --mem=32gb
 #SBATCH --gres="gpu:volta:1"
 #SBATCH --time=00:60:00
-#SBATCH --output=/home/gridsan/yilundu/gzhang/logs/diff_train.out
-#SBATCH --error=/home/gridsan/yilundu/gzhang/logs/diff_train.err
+#SBATCH --output=/home/gridsan/yilundu/gzhang/diffusion_policy/data/slurm/diff_train.out
+#SBATCH --error=/home/gridsan/yilundu/gzhang/diffusion_policy/data/slurm/diff_train.err
 
 echo Hooking
 eval "$(conda shell.bash hook)"

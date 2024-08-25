@@ -30,10 +30,16 @@ from diffusion_policy.common.json_logger import JsonLogger
 from diffusion_policy.model.common.lr_scheduler import get_scheduler
 from diffusers.training_utils import EMAModel
 
+
+from diffuser.guides.policies import Policy as PlannerPolicy
+# import diffuser.datasets as datasets
+import diffuser.utils as utils
+
+
 OmegaConf.register_new_resolver("eval", eval, replace=True)
 
 # %%
-class TrainDiffusionUnetLowdimWorkspace(BaseWorkspace):
+class TrainPlannerUnetLowdimWorkspace(BaseWorkspace):
     include_keys = ['global_step', 'epoch']
 
     def __init__(self, cfg: OmegaConf, output_dir=None):
@@ -46,10 +52,10 @@ class TrainDiffusionUnetLowdimWorkspace(BaseWorkspace):
         random.seed(seed)
 
         # configure model
-        self.model: DiffusionUnetLowdimPolicy
+        self.model: PlannerPolicy
         self.model = hydra.utils.instantiate(cfg.policy)
 
-        self.ema_model: DiffusionUnetLowdimPolicy = None
+        self.ema_model: PlannerPolicy = None
         if cfg.training.use_ema:
             self.ema_model = copy.deepcopy(self.model)
 

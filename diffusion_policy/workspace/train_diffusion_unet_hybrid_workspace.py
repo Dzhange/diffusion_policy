@@ -114,7 +114,8 @@ class TrainDiffusionUnetHybridWorkspace(BaseWorkspace):
         wandb_run = wandb.init(
             dir=str(self.output_dir),
             config=OmegaConf.to_container(cfg, resolve=True),
-            **cfg.logging
+            mode="offline",
+            **cfg.logging,
         )
         wandb.config.update(
             {
